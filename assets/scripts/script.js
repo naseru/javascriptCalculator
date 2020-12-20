@@ -23,21 +23,24 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber){
     outputResult(currentResult, calcDescription); // from vendor file
 }
 
+function writeToLog(operationIdentifier, prevResult, operationNumber, newResult){
+    const logEntry = {
+        operation: operationIdentifier,
+        prevResult: prevResult,
+        number: operationNumber,
+        newResult: newResult
+    };
+    logEntries.push(logEntry);
+    console.log(logEntries);
+}
+
 //Calculator Buttons
 function addTwoNumbers(num1, num2) {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
     currentResult = currentResult + enteredNumber;
     createAndWriteOutput('+',initialResult,currentResult);
-    const logEntry = {
-        operation: 'ADD',
-        prevResult: initialResult,
-        number: enteredNumber,
-        newResult: currentResult
-    };
-    logEntries.push(logEntry);
-    console.log(logEntry.operation);
-    console.log(logEntries);
+    writeToLog('ADD', initialResult, enteredNumber,currentResult);
 }
 
 function subtractTwoNumbers(num1, num2){
@@ -45,6 +48,7 @@ function subtractTwoNumbers(num1, num2){
     const initialResult = currentResult;
     currentResult = currentResult - enteredNumber;
     createAndWriteOutput('-',initialResult,currentResult);
+    writeToLog('SUBTRACT', initialResult, enteredNumber,currentResult);
 }
 
 function multiplyTwoNumbers(num1, num2){
@@ -52,6 +56,7 @@ function multiplyTwoNumbers(num1, num2){
     const initialResult = currentResult;
     currentResult = currentResult * enteredNumber;
     createAndWriteOutput('*',initialResult,currentResult);
+    writeToLog('MULTIPLY', initialResult, enteredNumber,currentResult);
 }
 
 function divideTwoNumbers(num1, num2){
@@ -59,6 +64,7 @@ function divideTwoNumbers(num1, num2){
     const initialResult = currentResult;
     currentResult = currentResult / enteredNumber;
     createAndWriteOutput('/',initialResult,currentResult);
+    writeToLog('DIVIDE', initialResult, enteredNumber,currentResult);
 }
 
 /*
